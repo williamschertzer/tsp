@@ -23,7 +23,7 @@ def parse_city_file(filepath):
     return locations
 
 def calculate_distance(point1, point2):
-    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+    return round(math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2))
 
 def total_cost(tour, locations):
     cost = 0
@@ -54,7 +54,7 @@ def simulated_annealing_tsp(locations, iterations=100000, temp=100000, cooling_r
 
 
 # Example usage for multiple cities
-folder_path = "/Users/william/Developments/Class/Algos/DATA"  # Replace with your folder path
+folder_path = "DATA"  # Replace with your folder path
 cities_locations = {}
 
 for filename in os.listdir(folder_path):
