@@ -14,3 +14,5 @@ args = parser.parse_args()
 print(f"Filename: {args.inst}")
 print(f"Algorithm: {args.alg}")
 print(f"Time cutoff: {args.time} seconds")
+
+#example: python exec.py -inst "ghl.txt" -alg "BF" -time 100
