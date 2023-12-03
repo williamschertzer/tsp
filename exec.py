@@ -1,5 +1,6 @@
 import os
 import argparse
+from local_search import simulated_annealing_tsp
 
 parser = argparse.ArgumentParser()
 
@@ -15,4 +16,15 @@ print(f"Filename: {args.inst}")
 print(f"Algorithm: {args.alg}")
 print(f"Time cutoff: {args.time} seconds")
 
+if args.alg == 'BF':
+  #call bf file
+
+elif args.alg == 'Approx':
+  #call approx file
+
+else args.alg == 'LS':
+  simulated_annealing_tsp(args.time, args.seed)
+
 #example: python exec.py -inst "ghl.txt" -alg "BF" -time 100
+
+
