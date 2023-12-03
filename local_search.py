@@ -54,7 +54,7 @@ def simulated_annealing_tsp(locations, iterations=100000, temp=100000, cooling_r
 
 
 # Example usage for multiple cities
-folder_path = "/Users/william/Developments/Class/Algos/DATA_Algos"  # Replace with your folder path
+folder_path = "/Users/william/Developments/Class/Algos/DATA"  # Replace with your folder path
 cities_locations = {}
 
 for filename in os.listdir(folder_path):
