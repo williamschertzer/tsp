@@ -54,49 +54,54 @@ def total_edge_cost(graph, tour):
         cost = cost + graph[tour[v]][tour[v+1]]
     return cost
 
-# Read input parameters
-dataset = sys.argv[1]
-cutoff = sys.argv[2]
-random_seed = sys.argv[3]
+def algo(args):
+    # Read input parameters
+    dataset = args[1]
+    cutoff = args[2]
+    random_seed = args[3]
 
-# Read dataset
-infile = open(dataset, 'r')
-name = infile.readline().strip().split()[1] # NAME
-comment = infile.readline().strip().split()[1] # COMMENT
-dimension = infile.readline().strip().split()[1] # DIMENSION
-edge_weight_type = infile.readline().strip().split()[1] # EDGE_WEIGHT_TYPE
-infile.readline()
-nodelist = []
-N = int(dimension)
-for i in range(0, N):
-    x, y = infile.readline().strip().split()[1:]
-    nodelist.append([float(x), float(y)])
-infile.close()
+    # Read dataset
+    infile = open(dataset, 'r')
+    name = infile.readline().strip().split()[1] # NAME
+    comment = infile.readline().strip().split()[1] # COMMENT
+    dimension = infile.readline().strip().split()[1] # DIMENSION
+    edge_weight_type = infile.readline().strip().split()[1] # EDGE_WEIGHT_TYPE
+    infile.readline()
+    nodelist = []
+    N = int(dimension)
+    for i in range(0, N):
+        x, y = infile.readline().strip().split()[1:]
+        nodelist.append([float(x), float(y)])
+    infile.close()
 
-# Create adjacency matrix representation graph
-graph = [[0 for i in range(N)] for j in range(N)]
-for i in range(N):
-    for j in range(N):
-        a = nodelist[i]
-        b = nodelist[j]
-        graph[i][j] = round(math.sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2))
+    # Create adjacency matrix representation graph
+    graph = [[0 for i in range(N)] for j in range(N)]
+    for i in range(N):
+        for j in range(N):
+            a = nodelist[i]
+            b = nodelist[j]
+            graph[i][j] = round(math.sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2))
 
-# Find MST of graph using Prim's Algorithm
-mst_predecessors = prims(graph, N)
-mst = predecessor_to_matrix(mst_predecessors)
+    # Find MST of graph using Prim's Algorithm
+    mst_predecessors = prims(graph, N)
+    mst = predecessor_to_matrix(mst_predecessors)
 
-# Perform a preorder tree walk on MST
-visited = [False] * N
-tour = []
-tour = dfs(mst, 0, visited, tour, N)
-tour.append(tour[0])
+    # Perform a preorder tree walk on MST
+    visited = [False] * N
+    tour = []
+    tour = dfs(mst, 0, visited, tour, N)
+    tour.append(tour[0])
 
-# Output final solution
-quality = total_edge_cost(graph, tour)
-sol = [None] * len(tour)
-for v in range(len(tour)):
-    sol[v] = 'v' + str(tour[v]+1)
-output = (quality, sol)
+    # Output final solution
+    quality = total_edge_cost(graph, tour)
+    sol = [None] * len(tour)
+    for v in range(len(tour)):
+        sol[v] = 'v' + str(tour[v]+1)
+    output = (quality, sol)
 
-print(output[0])
-print(output[1])
+    print(output[0])
+    print(output[1])
+
+    return output
+
+#algo(sys.argv)
