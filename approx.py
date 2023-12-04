@@ -1,5 +1,6 @@
 import sys
 import math
+import time
 
 # Prim's Algorithm
 def prims(graph, n):
@@ -55,13 +56,17 @@ def total_edge_cost(graph, tour):
     return cost
 
 def algo(args):
+    # Start timer
+    start_time = time.time()
+
     # Read input parameters
     dataset = args[1]
     cutoff = args[2]
     random_seed = args[3]
 
     # Read dataset
-    infile = open(dataset, 'r')
+    path = "DATA//"+dataset
+    infile = open(path, 'r')
     name = infile.readline().strip().split()[1] # NAME
     comment = infile.readline().strip().split()[1] # COMMENT
     dimension = infile.readline().strip().split()[1] # DIMENSION
@@ -98,10 +103,11 @@ def algo(args):
     for v in range(len(tour)):
         sol[v] = 'v' + str(tour[v]+1)
     output = (quality, sol)
-
-    print(output[0])
-    print(output[1])
-
+    end_time = time.time()
+    time_elapsed = end_time - start_time
+    print('Time Elapsed:', time_elapsed)
+    print('Solution Quality:', output[0])
+    print('Tour:', output[1])
     return output
 
 #algo(sys.argv)
