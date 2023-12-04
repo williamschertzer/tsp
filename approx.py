@@ -55,14 +55,14 @@ def total_edge_cost(graph, tour):
         cost = cost + graph[tour[v]][tour[v+1]]
     return cost
 
-def algo(args):
+def approx(filename):
     # Start timer
     start_time = time.time()
 
     # Read input parameters
-    dataset = args[1]
-    cutoff = args[2]
-    random_seed = args[3]
+    dataset = filename
+    # cutoff = args[2]
+    # random_seed = args[3]
 
     # Read dataset
     path = "DATA//"+dataset
