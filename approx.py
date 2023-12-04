@@ -101,13 +101,13 @@ def approx(filename):
     quality = total_edge_cost(graph, tour)
     sol = [None] * len(tour)
     for v in range(len(tour)):
-        sol[v] = 'v' + str(tour[v]+1)
+        sol[v] = str(tour[v]+1)
     output = (quality, sol)
     end_time = time.time()
     time_elapsed = end_time - start_time
-    print('Time Elapsed:', time_elapsed)
-    print('Solution Quality:', output[0])
-    print('Tour:', output[1])
+    # print('Time Elapsed:', time_elapsed)
+    # print('Solution Quality:', output[0])
+    # print('Tour:', output[1])
     return output
 
 #algo(sys.argv)
