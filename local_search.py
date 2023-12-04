@@ -57,6 +57,7 @@ def simulated_annealing_tsp(locations, iterations=100000, temp=100000, cooling_r
 folder_path = "DATA"  # Replace with your folder path
 cities_locations = {}
 
+
 for filename in os.listdir(folder_path):
     if filename.endswith(".tsp"):  # Assuming the files have a .tsp extension
         city_name = filename.split(".")[0]
@@ -64,6 +65,8 @@ for filename in os.listdir(folder_path):
         locations = parse_city_file(filepath)
         cities_locations[city_name] = locations
 
-for city, locations in cities_locations.items():
-    best_tour, best_cost = simulated_annealing_tsp(locations)
-    print(f"Total Cost in {city}:", best_cost)
+def run(time, seed):
+    for city, locations in cities_locations.items():
+        best_tour, best_cost = simulated_annealing_tsp(locations)
+        # print(f"Total Cost in {city}:", best_cost)
+    return best_tour, best_cost
