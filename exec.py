@@ -25,6 +25,6 @@ print(f"Time cutoff: {args.time} seconds")
 if args.alg == 'LS':
     best_tour, best_cost = ls_run(args.inst, args.time, args.seed)
 
-#example: python exec.py -inst "ghl.txt" -alg "BF" -time 100
+#example: python exec.py -inst "Toronto.tsp" -alg "LS" -time 10
 
 
