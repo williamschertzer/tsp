@@ -1,3 +1,10 @@
+# uses local search algorithm based on simulated annealing to find the find a path and with low cost
+# the main function ls_run locates the specified data file and passees it through the simulated_annealing_tsp function along
+# with the arguments for time and seed. A random initial tour is generated using the provided seed. The cost of that initial
+# tour is calculated with the total_cost function which calcualtes the cost between locations using the calculate_distance function
+# then, random swaps occur and the new cost is calculated. The new tour is accepted if the new cost is lower or if it is higher cost 
+# but with some probability based on a temperature that is decreasing throughout the simulation, and a constant K.
+
 import pandas as pd
 import numpy as np
 import os
@@ -41,7 +48,6 @@ def swap_locations(tour):
 def simulated_annealing_tsp(locations, max_time, seed= 0, temp=100000, cooling_rate=0.99, k=.8):
     random.seed(seed)
     current_tour = random.sample(range(len(locations)), len(locations))
-    # print(current_tour)
     current_cost = total_cost(current_tour, locations)
     
     start_time = time.time()
@@ -56,19 +62,6 @@ def simulated_annealing_tsp(locations, max_time, seed= 0, temp=100000, cooling_r
 
     return current_tour, current_cost
 
-
-# Example usage for multiple cities
-folder_path = "DATA"  # Replace with your folder path
-cities_locations = {}
-
-
-# for filename in os.listdir(folder_path):
-#     if filename == inst:  # Assuming the files have a .tsp extension
-#         city_name = filename.split(".")[0]
-#         filepath = os.path.join(folder_path, filename)
-#         locations = parse_city_file(filepath)
-#         cities_locations[city_name] = locations
-
 def ls_run(inst, time, seed):
     folder_path = "DATA"
     file_path = os.path.join(folder_path,inst)
@@ -77,5 +70,4 @@ def ls_run(inst, time, seed):
     cities_locations = {}
     cities_locations[city_name] = locations
     best_tour, best_cost = simulated_annealing_tsp(locations, seed = seed, max_time=time)
-    # print(f"Total Cost in {city_name}:", best_cost)
     return best_tour, best_cost
