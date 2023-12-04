@@ -102,12 +102,11 @@ def approx(filename):
     sol = [None] * len(tour)
     for v in range(len(tour)):
         sol[v] = 'v' + str(tour[v]+1)
-    output = (quality, sol)
     end_time = time.time()
     time_elapsed = end_time - start_time
     print('Time Elapsed:', time_elapsed)
-    print('Solution Quality:', output[0])
-    print('Tour:', output[1])
-    return output
+    print('Solution Quality:', quality)
+    print('Tour:', sol)
+    return sol, quality
 
 #algo(sys.argv)
