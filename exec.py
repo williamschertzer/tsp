@@ -1,3 +1,5 @@
+# Takes in the args from the user, calls the relevant algo and creates .sol file
+
 import os
 import argparse
 from local_search import ls_run
