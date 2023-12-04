@@ -5,7 +5,7 @@ import time
 #Function to read file
 def read(filename):
     nl_city=[]
-    path="DATA\\"+filename
+    path="DATA/"+filename
     infile=open(path, 'r')  
     Name=infile.readline().strip().split()[1] # NAME
     Comment=infile.readline().strip().split()[1] # COMMENT

@@ -38,10 +38,10 @@ def swap_locations(tour):
     tour[i], tour[j] = tour[j], tour[i]
     return tour
 
-def simulated_annealing_tsp(locations, max_time, seed, temp=100000, cooling_rate=0.99, k=.8):
+def simulated_annealing_tsp(locations, max_time, seed= 0, temp=100000, cooling_rate=0.99, k=.8):
     random.seed(seed)
     current_tour = random.sample(range(len(locations)), len(locations))
-    print(current_tour)
+    # print(current_tour)
     current_cost = total_cost(current_tour, locations)
     
     start_time = time.time()
@@ -77,5 +77,5 @@ def ls_run(inst, time, seed):
     cities_locations = {}
     cities_locations[city_name] = locations
     best_tour, best_cost = simulated_annealing_tsp(locations, seed = seed, max_time=time)
-    print(f"Total Cost in {city_name}:", best_cost)
+    # print(f"Total Cost in {city_name}:", best_cost)
     return best_tour, best_cost

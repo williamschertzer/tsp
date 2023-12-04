@@ -14,9 +14,9 @@ parser.add_argument('-seed', type=int, help='Random seed')
 
 args = parser.parse_args()
 
-print(f"Filename: {args.inst}")
-print(f"Algorithm: {args.alg}")
-print(f"Time cutoff: {args.time} seconds")
+# print(f"Filename: {args.inst}")
+# print(f"Algorithm: {args.alg}")
+# print(f"Time cutoff: {args.time} seconds")
 
 if args.alg == 'BF':
     best_tour, best_cost = brute_force(args.inst, args.time)
@@ -27,10 +27,25 @@ elif args.alg == 'Approx':
 elif args.alg == 'LS':
     best_tour, best_cost = ls_run(args.inst, args.time, args.seed)
 
+filename_parts = []
 
-with open(f'{args.inst}_{args.alg}_{args.time}_{args.seed}.sol', 'w') as file:
-    file.write(f'Length: {best_cost}')
-    file.write(f'Vertex_IDs: {best_tour}')
+if args.inst:
+    inst = args.inst.split('.tsp')[0]
+    filename_parts.append(inst)
+if args.alg:
+    filename_parts.append(args.alg)
+if args.time:
+    filename_parts.append(str(args.time))
+if args.seed:
+    filename_parts.append(str(args.seed))
+
+filename = '_'.join(filename_parts) + '.sol'
+
+with open(filename, 'w') as file:
+    file.write(str(best_cost) + '\n')
+    best_tour_string = ', '.join(map(str, best_tour))
+    file.write(best_tour_string)
+
 #example: python exec.py -inst "Toronto.tsp" -alg "LS" -time 10
 
 
