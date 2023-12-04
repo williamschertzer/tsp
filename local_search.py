@@ -3,6 +3,7 @@ import numpy as np
 import os
 import math
 import random
+import time
 
 def parse_city_file(filepath):
     with open(filepath, 'r') as file:
@@ -37,11 +38,12 @@ def swap_locations(tour):
     tour[i], tour[j] = tour[j], tour[i]
     return tour
 
-def simulated_annealing_tsp(locations, iterations=100000, temp=100000, cooling_rate=0.99, k=.8):
+def simulated_annealing_tsp(locations, max_time, temp=100000, cooling_rate=0.99, k=.8):
     current_tour = random.sample(range(len(locations)), len(locations))
     current_cost = total_cost(current_tour, locations)
-
-    for i in range(iterations):
+    
+    start_time = time.time()
+    while time.time() - start_time < max_time:
         new_tour = swap_locations(current_tour)
         new_cost = total_cost(new_tour, locations)
 
@@ -58,15 +60,20 @@ folder_path = "DATA"  # Replace with your folder path
 cities_locations = {}
 
 
-for filename in os.listdir(folder_path):
-    if filename.endswith(".tsp"):  # Assuming the files have a .tsp extension
-        city_name = filename.split(".")[0]
-        filepath = os.path.join(folder_path, filename)
-        locations = parse_city_file(filepath)
-        cities_locations[city_name] = locations
+# for filename in os.listdir(folder_path):
+#     if filename == inst:  # Assuming the files have a .tsp extension
+#         city_name = filename.split(".")[0]
+#         filepath = os.path.join(folder_path, filename)
+#         locations = parse_city_file(filepath)
+#         cities_locations[city_name] = locations
 
-def run(time, seed):
-    for city, locations in cities_locations.items():
-        best_tour, best_cost = simulated_annealing_tsp(locations)
-        # print(f"Total Cost in {city}:", best_cost)
+def ls_run(inst, time, seed):
+    folder_path = "DATA"
+    file_path = os.path.join(folder_path,inst)
+    city_name = inst.split(".")[0]
+    locations = parse_city_file(file_path)
+    cities_locations = {}
+    cities_locations[city_name] = locations
+    best_tour, best_cost = simulated_annealing_tsp(locations, max_time=time)
+    print(f"Total Cost in {city_name}:", best_cost)
     return best_tour, best_cost

@@ -1,6 +1,6 @@
 import os
 import argparse
-from local_search import simulated_annealing_tsp
+from local_search import ls_run
 
 parser = argparse.ArgumentParser()
 
@@ -16,14 +16,14 @@ print(f"Filename: {args.inst}")
 print(f"Algorithm: {args.alg}")
 print(f"Time cutoff: {args.time} seconds")
 
-if args.alg == 'BF':
-  #call bf file
+# if args.alg == 'BF':
+#   #call bf file
 
-elif args.alg == 'Approx':
-  #call approx file
+# elif args.alg == 'Approx':
+#   #call approx file
 
-else args.alg == 'LS':
-  simulated_annealing_tsp(args.time, args.seed)
+if args.alg == 'LS':
+    best_tour, best_cost = ls_run(args.inst, args.time, args.seed)
 
 #example: python exec.py -inst "ghl.txt" -alg "BF" -time 100
 
