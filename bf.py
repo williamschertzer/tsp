@@ -2,6 +2,18 @@ import os
 import math
 import time
 
+#Brute-force(vertexList, distMatrix):
+#    Initialize an array Path
+#    Initialize a float variable to store total path length
+#    Select a starting point
+#    for cnt in range length(vertexList):
+#        if current vertex is not visited:
+#            add current vertex to path
+#            set closest adjacent vertex as next vertex
+#            if next vertex not visited:
+#                set next vertex as current vertex
+#                add distance between the vertices to total path length
+
 #Function to read file
 def read(filename):
     nl_city=[]
