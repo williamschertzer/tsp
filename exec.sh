@@ -1,5 +1,7 @@
 #calls the exec.py file 
-#USE command ./exec.sh -inst INST -alg ALG -time TIME -seed SEED OR python exec.py -inst INST -alg ALG -time TIME -seed SEED
+
+#run 'chmod +x exec.py'
+#USE command python exec.py -inst INST -alg ALG -time TIME -seed SEED OR ./exec.sh -inst INST -alg ALG -time TIME -seed SEED
 
 #!/usr/bin/env sh
 
