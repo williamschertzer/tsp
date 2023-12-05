@@ -2,6 +2,12 @@ import sys
 import math
 import time
 
+# A 2-approximation to TSP can be found by first finding an MST of a graph. 
+# We then performed a preorder tree walk of the MST, creating a list of all 
+# the nodes ordered by when the nodes were first visited in the preorder walk. 
+# Finally, we added the initial/root node to the end of this list to complete the tour. 
+# Function to call = algo(args)
+
 # Prim's Algorithm
 def prims(graph, n):
     mstset = [False] * n
