@@ -1,5 +1,5 @@
 #calls the exec.py file 
-#USE ./exec.sh -inst INST -alg ALG -time TIME -seed SEED 
+#USE command ./exec.sh -inst INST -alg ALG -time TIME -seed SEED OR python exec.py -inst INST -alg ALG -time TIME -seed SEED
 
 #!/usr/bin/env sh
 
